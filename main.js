@@ -1,3 +1,4 @@
+import './index.css';
 import add from './src/add';
 
 const form = document.querySelector('#string-calculator-form');

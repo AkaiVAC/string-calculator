@@ -8,18 +8,44 @@
     </head>
     <body>
         <h1>String 🧶 Calculator</h1>
+
         <form id="string-calculator-form">
             <label>
-                Enter a sequence of numbers to calculate the sum:
-                <br />
-                <br />
-                <textarea id="numberInput" name="numberInput"></textarea>
+                <details open>
+                    <summary>
+                        Enter a sequence of numbers to calculate the sum:
+                    </summary>
+
+                    <ul>
+                        <li>
+                            With comma delimiter:
+                            <pre>123,456,789</pre>
+                        </li>
+                        <li>
+                            With custom delimiters:
+                            <pre>
+//+
+123+456+789</pre
+                            >
+                        </li>
+                        <li>
+                            With newline:
+                            <pre>
+123
+456
+789</pre
+                            >
+                        </li>
+                    </ul>
+                </details>
+                <textarea
+                    id="numberInput"
+                    name="numberInput"
+                    placeholder="e.g. 123,456,789..."></textarea>
             </label>
-            =
-            <output for="numberInput" id="result">0</output>
-            <br />
-            <br />
-            <button type="submit">Submit</button>
+            <button type="submit">
+                Result: <output for="numberInput" id="result">0</output>
+            </button>
         </form>
         <script type="module" src="/main.js"></script>
     </body>
