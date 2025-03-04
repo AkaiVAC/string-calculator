@@ -18,6 +18,14 @@ describe('String Calculator', () => {
         expect(add('1\n2,3')).toBe(6);
     });
 
+    it('handles leading and trailing delimiters and whitespaces', () => {
+        expect(add('1\n2,3,')).toBe(6);
+        expect(add('1\n2,3\n')).toBe(6);
+        expect(add('1\n2,3\n\n')).toBe(6);
+        expect(add(' 1,2,3')).toBe(6);
+        expect(add(' 1,2,3  ')).toBe(6);
+    });
+
     it.todo('handles custom delimiters');
     it.todo('throws an exception when input contains negative numbers');
 });
