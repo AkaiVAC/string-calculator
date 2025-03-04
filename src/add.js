@@ -1,5 +1,22 @@
+/**
+ * A regex pattern that matches strings composed of numbers separated by commas with optional whitespace:
+ * @example
+    "123"
+    "123,456"
+    "123, 456"
+    "123,456, 789"
+ */
+const inputPattern = new RegExp(/^\d+(?:,\s*\d+)*$/);
+
 const add = (input) => {
-    return input === '' ? 0 : input;
+    switch (true) {
+        case inputPattern.test(input):
+            return input
+                .split(',')
+                .reduce((acc, curr) => Number(acc) + Number(curr), 0);
+        default:
+            return 0;
+    }
 };
 
 export default add;
