@@ -36,5 +36,9 @@ describe('String Calculator', () => {
         expect(add('//+\n1,2,3')).toBe(0);
     });
 
-    it.todo('throws an exception when input contains negative numbers');
+    it('throws an exception when input contains negative numbers', () => {
+        const expectedResponse = 'negative numbers not allowed: -2';
+        expect(add('//;\n1,-2,3;')).toBe(expectedResponse);
+        expect(add('1,-2,3')).toBe(expectedResponse);
+    });
 });

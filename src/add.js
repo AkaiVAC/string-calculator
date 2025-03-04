@@ -41,8 +41,22 @@ const inputPattern = (customDelimiter = ',') => {
  */
 const customDelimiterFormat = new RegExp(/^\/\/(?:[A-Za-z!-/:-@[-`{-~])\n/);
 
+/**
+ * A regex that matches all numbers in the string with a hyphen in front
+ * @example
+ * "-123"
+ * "123,-123,312"
+ */
+const negativeNumberPattern = new RegExp(/-[0-9]+/g);
+
 const processInput = (input, delimiter = ',') => {
-    if (!inputPattern(delimiter).test(input)) return 0;
+    if (!inputPattern(delimiter).test(input)) {
+        return negativeNumberPattern.test(input)
+            ? `negative numbers not allowed: ${input
+                  .match(negativeNumberPattern)
+                  .join(', ')}`
+            : 0;
+    }
 
     return input
         .trim()
