@@ -1,7 +1,10 @@
-import { describe, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
+import add from './add';
 
 describe('String Calculator', () => {
-    it.todo('returns 0 when input is empty');
+    it('returns 0 when input is empty', () => {
+        expect(add('')).toBe(0);
+    });
     it.todo('returns 1 when input is "1"');
     it.todo('returns 6 when input is "1,5"');
     it.todo('returns sum for longer input sequences');

@@ -1,5 +1,5 @@
-const add = () => {
-    new Error('Not Implemented');
+const add = (input) => {
+    return input === '' ? 0 : input;
 };
 
 export default add;
