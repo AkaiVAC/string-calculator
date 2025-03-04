@@ -30,5 +30,11 @@ describe('String Calculator', () => {
         expect(add('//;\n1;2;3;')).toBe(6);
         expect(add('//+\n1+2+3')).toBe(6);
     });
+
+    it('prevents mixing delimiters when using custom delimiters', () => {
+        expect(add('//;\n1,2,3;')).toBe(0);
+        expect(add('//+\n1,2,3')).toBe(0);
+    });
+
     it.todo('throws an exception when input contains negative numbers');
 });
