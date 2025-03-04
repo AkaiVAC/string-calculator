@@ -14,7 +14,10 @@ describe('String Calculator', () => {
         expect(add('1, 213, 32213, 123')).toBe(32550);
     });
 
-    it.todo('handles newline delimiters in addition to commas');
+    it('handles newline delimiters in addition to commas', () => {
+        expect(add('1\n2,3')).toBe(6);
+    });
+
     it.todo('handles custom delimiters');
     it.todo('throws an exception when input contains negative numbers');
 });

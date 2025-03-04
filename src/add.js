@@ -6,12 +6,13 @@
     "123, 456"
     "123,456, 789"
  */
-const inputPattern = new RegExp(/^\d+(?:,\s*\d+)*$/);
+const inputPattern = new RegExp(/^\d+(?:(?:,\s*|\n\s*)\d+)*$/);
 
 const add = (input) => {
     switch (true) {
         case inputPattern.test(input):
             return input
+                .replaceAll('\n', ',')
                 .split(',')
                 .reduce((acc, curr) => Number(acc) + Number(curr), 0);
         default:
