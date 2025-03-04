@@ -20,15 +20,36 @@ const inputPattern = new RegExp(
     /^\s*\d+(?:(?:,\s*|\n\s*)\d+)*(?:[,\n]\s*)*\s*$/
 );
 
+/**
+ * A regex pattern that the "//<character><newline>" format:
+ * `/^` - Start of string
+ * `\/\/` - The "//" pattern
+ * `(?:[A-Za-z!-/:-@[-`{-~])` - A non-capturing group for any alphabetic or a single punctuation character
+ * `\n` - Mandatory newline
+ * 
+ * @example
+    "//f\n"
+    "//@\n"
+    "//;\n"
+ */
+const customDelimiterPattern = new RegExp(/^\/\/(?:[A-Za-z!-/:-@[-`{-~])\n/);
+
+const processInput = (input, delimiter = ',') => {
+    return input
+        .trim()
+        .replace(/[,\n\r]+$/g, '')
+        .replaceAll('\n', ',')
+        .replaceAll(delimiter, ',')
+        .split(',')
+        .reduce((acc, curr) => Number(acc) + Number(curr), 0);
+};
+
 const add = (input) => {
     switch (true) {
+        case input.startsWith('//') && customDelimiterPattern.test(input):
+            return processInput(input.slice(4), input[2]);
         case inputPattern.test(input):
-            return input
-                .trim()
-                .replace(/[,\n\r]+$/g, '')
-                .replaceAll('\n', ',')
-                .split(',')
-                .reduce((acc, curr) => Number(acc) + Number(curr), 0);
+            return processInput(input);
         default:
             return 0;
     }
